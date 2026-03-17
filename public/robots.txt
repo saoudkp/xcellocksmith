@@ -15,4 +15,4 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 
-Sitemap: https://lock-smith-cms.lovable.app/sitemap.xml
+Sitemap: https://xcellocksmith.com/sitemap.xml
