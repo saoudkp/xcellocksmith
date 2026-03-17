@@ -1,0 +1,109 @@
+version: "3.9"
+
+services:
+
+  # ─── PostgreSQL ───────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: xcel_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-xcel-cms}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - xcel_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── MinIO (S3-compatible media storage) ──────────────────────
+  minio:
+    image: minio/minio:latest
+    container_name: xcel_minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-minioadmin}
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # MinIO Console UI
+    networks:
+      - xcel_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ─── Payload CMS (Next.js) ────────────────────────────────────
+  cms:
+    build:
+      context: ./apps/cms
+      dockerfile: Dockerfile
+    container_name: xcel_cms
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-xcel-cms}
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+      S3_ENDPOINT: http://minio:9000
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:-minioadmin}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:-minioadmin}
+      S3_BUCKET: ${S3_BUCKET:-xcel-media}
+      S3_REGION: ${S3_REGION:-us-east-1}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://xcellocksmith.com}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      WAHA_API_URL: http://waha:3000
+      WAHA_API_KEY: ${WAHA_API_KEY}
+    ports:
+      - "3000:3000"
+    networks:
+      - xcel_net
+
+  # ─── React Frontend (Nginx) ───────────────────────────────────
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: xcel_frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - xcel_net
+
+  # ─── WAHA (WhatsApp HTTP API) ─────────────────────────────────
+  waha:
+    image: devlikeapro/waha:latest
+    container_name: xcel_waha
+    restart: unless-stopped
+    environment:
+      WHATSAPP_API_KEY: ${WAHA_API_KEY:-changeme}
+      WHATSAPP_DEFAULT_ENGINE: WEBJS
+    volumes:
+      - waha_sessions:/app/.sessions
+    ports:
+      - "3001:3000"   # WAHA dashboard at :3001 on host
+    networks:
+      - xcel_net
+
+volumes:
+  postgres_data:
+  minio_data:
+  waha_sessions:
+
+networks:
+  xcel_net:
+    driver: bridge
