@@ -1,0 +1,40 @@
+export interface Location {
+  id: string;
+  cityName: string;
+  slug: string;
+  seoMetaTitle: string;
+  seoMetaDescription: string;
+  lat: number;
+  lng: number;
+  isActive: boolean;
+}
+
+export const locations: Location[] = [
+  { id: "l1", cityName: "Cleveland", slug: "cleveland", seoMetaTitle: "24/7 Emergency Locksmith in Cleveland, OH | Xcel Locksmith", seoMetaDescription: "Fast, reliable locksmith services in Cleveland. House lockouts, car key replacement, commercial locks. Licensed & insured. Call now for 20-30 min response!", lat: 41.4993, lng: -81.6944, isActive: true },
+  { id: "l2", cityName: "East Cleveland", slug: "east-cleveland", seoMetaTitle: "Emergency Locksmith East Cleveland | 24/7 Service | Xcel", seoMetaDescription: "Locked out in East Cleveland? Xcel Locksmith provides fast residential, commercial & automotive locksmith services. No hidden fees. Call 24/7!", lat: 41.5326, lng: -81.5790, isActive: true },
+  { id: "l3", cityName: "Lakewood", slug: "lakewood", seoMetaTitle: "Lakewood Locksmith | 24/7 Emergency Service | Xcel Locksmith", seoMetaDescription: "Professional locksmith in Lakewood, OH. Lock rekeying, key duplication, car lockouts & more. Licensed, insured, no hidden fees.", lat: 41.4820, lng: -81.7982, isActive: true },
+  { id: "l4", cityName: "Westlake", slug: "westlake", seoMetaTitle: "Westlake Locksmith Services | Fast Response | Xcel Locksmith", seoMetaDescription: "Trusted locksmith in Westlake, OH. Emergency lockouts, lock installation, car key replacement. 20-30 min response time.", lat: 41.4553, lng: -81.9179, isActive: true },
+  { id: "l5", cityName: "Beachwood", slug: "beachwood", seoMetaTitle: "Beachwood Locksmith | Residential & Commercial | Xcel", seoMetaDescription: "Expert locksmith services in Beachwood, OH. High-security locks, access control, emergency lockouts. Call for free estimate!", lat: 41.4645, lng: -81.5087, isActive: true },
+  { id: "l6", cityName: "Richfield", slug: "richfield", seoMetaTitle: "Richfield Locksmith | 24/7 Emergency Service | Xcel", seoMetaDescription: "Reliable locksmith in Richfield, OH. Residential, commercial & automotive services. Licensed & insured. Fast response!", lat: 41.2392, lng: -81.6379, isActive: true },
+  { id: "l7", cityName: "Parma", slug: "parma", seoMetaTitle: "Parma Locksmith | Emergency Lockouts | Xcel Locksmith", seoMetaDescription: "24/7 locksmith in Parma, OH. House lockouts, lock rekeying, car key replacement. No hidden fees. 20-30 min arrival!", lat: 41.4048, lng: -81.7229, isActive: true },
+  { id: "l8", cityName: "Brunswick", slug: "brunswick", seoMetaTitle: "Brunswick Locksmith | 24/7 Service | Xcel Locksmith", seoMetaDescription: "Fast locksmith services in Brunswick, OH. Emergency lockouts, lock installation, ignition repair. Call now!", lat: 41.2384, lng: -81.8418, isActive: true },
+  { id: "l9", cityName: "Medina", slug: "medina", seoMetaTitle: "Medina Locksmith | Emergency & Residential | Xcel", seoMetaDescription: "Professional locksmith in Medina, OH. Residential, commercial & auto locksmith services. Licensed, fast & affordable.", lat: 41.1385, lng: -81.8637, isActive: true },
+  { id: "l10", cityName: "Lorain", slug: "lorain", seoMetaTitle: "Lorain Locksmith | 24/7 Emergency | Xcel Locksmith", seoMetaDescription: "Emergency locksmith in Lorain, OH. Car lockouts, lock replacement, key duplication. No hidden fees. We arrive in 20-30 min!", lat: 41.4528, lng: -82.1824, isActive: true },
+  { id: "l11", cityName: "Avon", slug: "avon", seoMetaTitle: "Avon Locksmith | Fast & Reliable | Xcel Locksmith", seoMetaDescription: "Trusted locksmith in Avon, OH. Emergency lockouts, smart lock installation, car key programming. Call 24/7!", lat: 41.4517, lng: -82.0354, isActive: true },
+  { id: "l12", cityName: "Avon Lake", slug: "avon-lake", seoMetaTitle: "Avon Lake Locksmith | 24/7 Service | Xcel Locksmith", seoMetaDescription: "Expert locksmith services in Avon Lake, OH. House & car lockouts, lock rekeying, commercial security. Fast response!", lat: 41.5053, lng: -82.0282, isActive: true },
+  { id: "l13", cityName: "Elyria", slug: "elyria", seoMetaTitle: "Elyria Locksmith | Emergency Lockouts | Xcel Locksmith", seoMetaDescription: "24/7 locksmith in Elyria, OH. Residential, commercial & automotive locksmith services. Licensed & insured. No hidden fees!", lat: 41.3684, lng: -82.1076, isActive: true },
+  { id: "l14", cityName: "Strongsville", slug: "strongsville", seoMetaTitle: "Strongsville Locksmith | 24/7 Emergency | Xcel Locksmith", seoMetaDescription: "Professional locksmith in Strongsville, OH. Lock installation, car key replacement, commercial security. 20-30 min response!", lat: 41.3145, lng: -81.8357, isActive: true },
+  { id: "l15", cityName: "North Olmsted", slug: "north-olmsted", seoMetaTitle: "North Olmsted Locksmith | Fast Service | Xcel Locksmith", seoMetaDescription: "Reliable locksmith in North Olmsted, OH. Emergency lockouts, key duplication, high-security locks. Call now!", lat: 41.4156, lng: -81.9235, isActive: true },
+  { id: "l16", cityName: "Middleburg Heights", slug: "middleburg-heights", seoMetaTitle: "Middleburg Heights Locksmith | 24/7 | Xcel Locksmith", seoMetaDescription: "Emergency locksmith in Middleburg Heights, OH. Residential, commercial & auto lock services. Licensed, no hidden fees!", lat: 41.3614, lng: -81.8126, isActive: true },
+  { id: "l17", cityName: "Brook Park", slug: "brook-park", seoMetaTitle: "Brook Park Locksmith | Emergency Service | Xcel Locksmith", seoMetaDescription: "24/7 locksmith in Brook Park, OH. Car lockouts, lock rekeying, deadbolt installation. Fast & affordable!", lat: 41.3981, lng: -81.8243, isActive: true },
+  { id: "l18", cityName: "Euclid", slug: "euclid", seoMetaTitle: "Euclid Locksmith | 24/7 Emergency | Xcel Locksmith", seoMetaDescription: "Fast locksmith services in Euclid, OH. House & car lockouts, lock installation, master key systems. No hidden fees!", lat: 41.5931, lng: -81.5268, isActive: true },
+  { id: "l19", cityName: "Mayfield Heights", slug: "mayfield-heights", seoMetaTitle: "Mayfield Heights Locksmith | Trusted & Fast | Xcel", seoMetaDescription: "Professional locksmith in Mayfield Heights, OH. Emergency lockouts, commercial locks, car key replacement. 24/7 service!", lat: 41.5192, lng: -81.4579, isActive: true },
+  { id: "l20", cityName: "Shaker Heights", slug: "shaker-heights", seoMetaTitle: "Shaker Heights Locksmith | 24/7 Service | Xcel Locksmith", seoMetaDescription: "Expert locksmith in Shaker Heights, OH. Residential & commercial lock services, smart locks, emergency lockouts. Call now!", lat: 41.4739, lng: -81.5372, isActive: true },
+  { id: "l21", cityName: "Garfield Heights", slug: "garfield-heights", seoMetaTitle: "Garfield Heights Locksmith | Emergency | Xcel Locksmith", seoMetaDescription: "24/7 locksmith in Garfield Heights, OH. Lock repair, car lockouts, key duplication. Licensed, insured, no hidden fees!", lat: 41.4170, lng: -81.6065, isActive: true },
+  { id: "l22", cityName: "Bedford", slug: "bedford", seoMetaTitle: "Bedford Locksmith | 24/7 Emergency Service | Xcel", seoMetaDescription: "Reliable locksmith in Bedford, OH. Emergency lockouts, lock installation, ignition repair. Fast 20-30 min response!", lat: 41.3932, lng: -81.5365, isActive: true },
+  { id: "l23", cityName: "Independence", slug: "independence", seoMetaTitle: "Independence Locksmith | Fast & Trusted | Xcel Locksmith", seoMetaDescription: "Professional locksmith in Independence, OH. Commercial & residential lock services, car key replacement. No hidden fees!", lat: 41.3687, lng: -81.6382, isActive: true },
+  { id: "l24", cityName: "Fairview Park", slug: "fairview-park", seoMetaTitle: "Fairview Park Locksmith | 24/7 Emergency | Xcel", seoMetaDescription: "Trusted locksmith in Fairview Park, OH. House lockouts, lock rekeying, auto key programming. Licensed & insured!", lat: 41.4420, lng: -81.8640, isActive: true },
+];
+
+export const getActiveLocations = () => locations.filter(l => l.isActive);
+export const getLocationBySlug = (slug: string) => locations.find(l => l.slug === slug && l.isActive);

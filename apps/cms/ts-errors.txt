@@ -1,0 +1,4 @@
+src/components/HelpGuide.tsx(8,9): error TS2503: Cannot find namespace 'JSX'.
+src/components/HelpGuide.tsx(9,12): error TS2503: Cannot find namespace 'JSX'.
+src/migrations/index.ts(1,72): error TS2307: Cannot find module './20260228_200639_vehicle_makes_inline_models' or its corresponding type declarations.
+src/seed/__tests__/global-seeders.test.ts(59,32): error TS7006: Parameter 's' implicitly has an 'any' type.

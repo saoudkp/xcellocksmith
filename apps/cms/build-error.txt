@@ -1,0 +1,149 @@
+
+> @xcel-locksmith/cms@0.1.0 build
+> next build
+
+ ΓÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of D:\xcel-locksmith-hub-main-antigravity\xcel-locksmith-hub-main\package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * D:\xcel-locksmith-hub-main-antigravity\xcel-locksmith-hub-main\apps\cms\package-lock.json
+
+   Γû▓ Next.js 15.5.3
+   - Environments: .env
+
+   Creating an optimized production build ...
+Browserslist: browsers data (caniuse-lite) is 9 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+warn - The `content` option in your Tailwind CSS configuration is missing or empty.
+warn - Configure your content sources or your generated CSS will be missing styles.
+warn - https://tailwindcss.com/docs/content-configuration
+ Γ£ô Compiled successfully in 39.9s
+   Linting and checking validity of types ...
+
+ ΓÜá The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
+
+Failed to compile.
+
+./src/access/__tests__/access.property.test.ts
+21:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+28:6  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/access/__tests__/reviews-access.property.test.ts
+36:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+43:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/(payload)/admin/[[...segments]]/page.tsx
+18:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/app/api/submit-quote/route.ts
+31:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/sitemap.xml/__tests__/sitemap.property.test.ts
+71:62  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+116:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+119:61  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+141:42  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+227:85  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+228:61  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+254:61  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+280:71  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+281:61  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+310:61  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/hooks/__tests__/autoGenerateSlug.property.test.ts
+12:31  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+
+./src/hooks/__tests__/autoGenerateSlug.test.ts
+6:31  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+
+./src/hooks/__tests__/emailResilience.property.test.ts
+21:9  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+
+./src/hooks/__tests__/rejectHoneypot.property.test.ts
+12:29  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+
+./src/hooks/__tests__/revalidation.property.test.ts
+31:8  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+54:39  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+71:39  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+86:39  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+103:59  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+124:36  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+139:36  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+154:56  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+177:34  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+192:34  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+207:54  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+
+./src/hooks/__tests__/sendQuoteNotification.property.test.ts
+20:36  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+
+./src/hooks/__tests__/sendReviewNotification.property.test.ts
+20:37  Error: The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type.  @typescript-eslint/no-unsafe-function-type
+
+./src/seed/data-mappers.ts
+656:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+664:12  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/seed/index.ts
+41:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+52:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+53:19  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+299:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+307:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+314:14  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+319:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+320:23  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+340:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+367:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+376:14  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+395:35  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+405:34  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+415:35  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+417:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/seed/upload-media.ts
+30:28  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+45:28  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/seed/__tests__/global-seeders.test.ts
+46:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+51:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+58:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+59:35  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+66:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/seed/__tests__/idempotency.property.test.ts
+21:60  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+87:63  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+128:63  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+179:64  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+180:64  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/seed/__tests__/service-merge.property.test.ts
+86:61  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+npm ERR! Lifecycle script `build` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @xcel-locksmith/cms@0.1.0 
+npm ERR!   at location: D:\xcel-locksmith-hub-main-antigravity\xcel-locksmith-hub-main\apps\cms 
