@@ -91,7 +91,7 @@ services:
     restart: unless-stopped
     environment:
       WHATSAPP_API_KEY: ${WAHA_API_KEY:-changeme}
-      WHATSAPP_DEFAULT_ENGINE: WEBJS
+      WHATSAPP_DEFAULT_ENGINE: NOWEB
     volumes:
       - waha_sessions:/app/.sessions
     ports:
