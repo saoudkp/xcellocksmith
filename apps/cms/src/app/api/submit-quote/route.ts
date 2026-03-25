@@ -3,8 +3,6 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { quoteSchema } from './schema'
 
-export { quoteSchema } from './schema'
-
 const ALLOWED_ORIGINS = [
   'http://localhost:3000',
   'http://localhost:5173',
