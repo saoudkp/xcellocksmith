@@ -142,7 +142,7 @@ async function migrateSectionsSettings(payload: Payload): Promise<void> {
 async function migrateServicesSettings(payload: Payload): Promise<void> {
   payload.logger.info('📄 Reading services-settings global...')
 
-  const servicesData = (await payload.findGlobal({ slug: 'services-settings' })) as unknown as Record<string, unknown>
+  const servicesData = (await payload.findGlobal({ slug: 'services-settings' as any })) as unknown as Record<string, unknown>
   const sectionHeader = servicesData.sectionHeader as SectionGroupData | undefined
 
   if (!sectionHeader) {
@@ -172,8 +172,8 @@ async function migrateServicesSettings(payload: Payload): Promise<void> {
 
     payload.logger.info('💾 Saving services-settings...')
     await payload.updateGlobal({
-      slug: 'services-settings',
-      data: { sectionHeader: updatedHeader },
+      slug: 'services-settings' as any,
+      data: { sectionHeader: updatedHeader } as any,
     })
     payload.logger.info(
       `  ✅ sectionHeader: migrated heading="${sectionHeader.heading ?? ''}" accent="${sectionHeader.headingAccent ?? ''}"`,
