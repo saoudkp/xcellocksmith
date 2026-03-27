@@ -54,7 +54,7 @@ const CityLandingPage = () => {
     "@type": "Locksmith",
     name: `Xcel Locksmith — ${location.cityName}`,
     url: `https://xcellocksmith.com/service-areas/${location.slug}`,
-    telephone: "+12165551234",
+    telephone: brand.phoneNumber.replace('tel:', ''),
     areaServed: { "@type": "City", name: location.cityName },
     address: { "@type": "PostalAddress", addressLocality: location.cityName, addressRegion: "OH", addressCountry: "US" },
     geo: { "@type": "GeoCoordinates", latitude: location.lat, longitude: location.lng },

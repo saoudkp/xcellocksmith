@@ -2,9 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Phone, Home } from "lucide-react";
 import StickyHeader from "@/components/StickyHeader";
+import { useBrand } from "@/hooks/useCms";
 
 const NotFound = () => {
   const location = useLocation();
+  const brand = useBrand();
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
@@ -22,7 +24,7 @@ const NotFound = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+12165551234"
+              href={brand.phoneNumber}
               className="touch-target flex items-center justify-center gap-2 bg-accent text-accent-foreground font-bold px-6 py-3 rounded-xl animate-pulse-glow"
             >
               <Phone className="w-5 h-5" /> Call Now

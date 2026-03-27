@@ -40,7 +40,7 @@ const StickyHeader = () => {
       {/* Emergency banner - mobile */}
       <div className="skeu-cta-red text-white text-center py-1.5 px-4 text-sm font-semibold flex items-center justify-center gap-2 md:hidden">
         <Zap className="w-4 h-4" />
-        <span>We Arrive in 20–30 Minutes!</span>
+        <span>We Arrive in {brand.responseTime}!</span>
       </div>
 
       {/* Main header with glass */}

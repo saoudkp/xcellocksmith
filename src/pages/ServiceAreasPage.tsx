@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Shield, ChevronRight } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 import { getActiveLocations } from "@/data/locations";
-import { defaultBrand } from "@/data/siteConfig";
+import { useBrand } from "@/hooks/useCms";
 import StickyHeader from "@/components/StickyHeader";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -12,12 +12,13 @@ import ServiceAreaMap from "@/components/ServiceAreaMap";
 
 const ServiceAreasPage = () => {
   const locations = getActiveLocations();
+  const brand = useBrand();
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: defaultBrand.name,
-    telephone: defaultBrand.phoneNumber,
+    name: brand.name,
+    telephone: brand.phoneNumber,
     areaServed: locations.map((loc) => ({
       "@type": "City",
       name: `${loc.cityName}, OH`,
@@ -30,16 +31,16 @@ const ServiceAreasPage = () => {
         <title>Service Areas | 24/7 Locksmith in Cleveland & Surrounding Cities</title>
         <meta
           name="description"
-          content={`Xcel Locksmith serves ${locations.length} cities across the Cleveland metro area. 20-30 min response. Licensed & insured. Call 24/7!`}
+          content={`Xcel Locksmith serves ${locations.length} cities across the Cleveland metro area. ${brand.responseTime} response. Licensed & insured. Call 24/7!`}
         />
         <link rel="canonical" href="https://xcellocksmith.com/service-areas" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Service Areas | 24/7 Locksmith in Cleveland & Surrounding Cities" />
-        <meta property="og:description" content={`Xcel Locksmith serves ${locations.length} cities across the Cleveland metro area. 20-30 min response. Licensed & insured. Call 24/7!`} />
+        <meta property="og:description" content={`Xcel Locksmith serves ${locations.length} cities across the Cleveland metro area. ${brand.responseTime} response. Licensed & insured. Call 24/7!`} />
         <meta property="og:url" content="https://xcellocksmith.com/service-areas" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Service Areas | 24/7 Locksmith in Cleveland & Surrounding Cities" />
-        <meta name="twitter:description" content={`Xcel Locksmith serves ${locations.length} cities across the Cleveland metro area. 20-30 min response. Licensed & insured. Call 24/7!`} />
+        <meta name="twitter:description" content={`Xcel Locksmith serves ${locations.length} cities across the Cleveland metro area. ${brand.responseTime} response. Licensed & insured. Call 24/7!`} />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 
@@ -65,14 +66,14 @@ const ServiceAreasPage = () => {
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
                 Fast, reliable locksmith services across the entire Cleveland metropolitan area. 
-                We arrive in 20–30 minutes, 24/7.
+                We arrive in {brand.responseTime}, 24/7.
               </p>
               <a
-                href={`tel:${defaultBrand.phoneNumber}`}
+                href={brand.phoneNumber}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold text-lg shadow-lg hover:shadow-accent/30 transition-all hover:scale-105"
               >
                 <Phone className="w-5 h-5" />
-                Call Now — {defaultBrand.phoneDisplay}
+                Call Now — {brand.phoneDisplay}
               </a>
             </motion.div>
           </div>
@@ -83,7 +84,7 @@ const ServiceAreasPage = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { icon: Clock, label: "20–30 Min Response" },
+                { icon: Clock, label: `${brand.responseTime} Response` },
                 { icon: Shield, label: "Licensed & Insured" },
                 { icon: Phone, label: "24/7 Availability" },
                 { icon: MapPin, label: `${locations.length} Cities Covered` },
@@ -148,7 +149,7 @@ const ServiceAreasPage = () => {
                       </div>
                       <div className="text-xs font-medium text-accent/70 flex items-center gap-1">
                         <Clock className="w-3 h-3" />
-                        20–30 min
+                        {brand.responseTime}
                       </div>
                     </div>
                     <div className="mt-3 flex items-center gap-1 text-xs font-medium text-accent opacity-0 group-hover:opacity-100 transition-opacity">
@@ -173,11 +174,11 @@ const ServiceAreasPage = () => {
                 We may still serve your area. Call us and we'll let you know our availability and estimated arrival time.
               </p>
               <a
-                href={`tel:${defaultBrand.phoneNumber}`}
+                href={brand.phoneNumber}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold text-lg shadow-lg hover:shadow-accent/30 transition-all hover:scale-105"
               >
                 <Phone className="w-5 h-5" />
-                {defaultBrand.phoneDisplay}
+                {brand.phoneDisplay}
               </a>
             </motion.div>
           </div>
