@@ -14,7 +14,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ScrollToTop from "@/components/ScrollToTop";
 import { LocalBusinessSchema, FAQSchema, TeamSchema } from "@/components/StructuredData";
-import { useSections } from "@/hooks/useCms";
+import { useSections, useCmsReady } from "@/hooks/useCms";
 import { useHashScroll } from "@/hooks/useHashScroll";
 import { type SectionConfig } from "@/data/siteConfig";
 
@@ -38,7 +38,19 @@ const revealVariants: Array<"fadeUp" | "fadeIn" | "scale"> = ["fadeUp", "fadeIn"
 
 const Index = () => {
   const activeSections = useSections();
+  const cmsReady = useCmsReady();
   useHashScroll();
+
+  if (!cmsReady) {
+    return (
+      <div className="min-h-screen bg-gradient-page flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-accent/30 border-t-accent rounded-full animate-spin" />
+          <p className="text-muted-foreground text-sm font-medium animate-pulse">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-page">

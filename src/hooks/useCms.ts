@@ -711,3 +711,29 @@ export function useSectionsSettings(): SectionsConfig {
     },
   };
 }
+
+// ── CMS Ready (loading gate for initial page render) ──
+
+export function useCmsReady(): boolean {
+  const siteSettings = useQuery({
+    queryKey: ['cms', 'site-settings'],
+    queryFn: fetchSiteSettings,
+    staleTime: QUERY_STALE,
+    retry: 1,
+  });
+  const heroSettings = useQuery({
+    queryKey: ['cms', 'hero-settings'],
+    queryFn: fetchHeroSettings,
+    staleTime: QUERY_STALE,
+    retry: 1,
+  });
+  const homepageLayout = useQuery({
+    queryKey: ['cms', 'homepage-layout'],
+    queryFn: fetchHomepageLayout,
+    staleTime: QUERY_STALE,
+    retry: 1,
+  });
+
+  // Ready when all critical queries have settled (success or error)
+  return !siteSettings.isLoading && !heroSettings.isLoading && !homepageLayout.isLoading;
+}
