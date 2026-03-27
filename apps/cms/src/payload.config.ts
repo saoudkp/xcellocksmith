@@ -68,25 +68,23 @@ export default buildConfig({
     },
   }),
   plugins: [
-    ...(process.env.S3_ENDPOINT
-      ? [
-          s3Storage({
-            collections: {
-              media: true,
-            },
-            bucket: process.env.S3_BUCKET || 'xcel-media',
-            config: {
-              endpoint: process.env.S3_ENDPOINT,
-              credentials: {
-                accessKeyId: process.env.S3_ACCESS_KEY || '',
-                secretAccessKey: process.env.S3_SECRET_KEY || '',
-              },
-              region: process.env.S3_REGION || 'us-east-1',
-              forcePathStyle: true,
-            },
-          }),
-        ]
-      : []),
+    s3Storage({
+      collections: {
+        media: {
+          disableLocalStorage: !!process.env.S3_ENDPOINT,
+        },
+      },
+      bucket: process.env.S3_BUCKET || 'xcel-media',
+      config: {
+        endpoint: process.env.S3_ENDPOINT || 'http://localhost:9000',
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY || 'minioadmin',
+          secretAccessKey: process.env.S3_SECRET_KEY || 'minioadmin',
+        },
+        region: process.env.S3_REGION || 'us-east-1',
+        forcePathStyle: true,
+      },
+    }),
   ],
   collections: [
     Users,
