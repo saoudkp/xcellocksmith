@@ -4,6 +4,7 @@ import { publicReadAdminWrite } from '@/access'
 const GalleryItems: CollectionConfig = {
   slug: 'gallery-items',
   labels: { singular: 'Gallery Item', plural: 'Before/After Gallery' },
+  versions: false,
   admin: {
     group: 'Content',
     useAsTitle: 'title',
@@ -88,22 +89,8 @@ const GalleryItems: CollectionConfig = {
       relationTo: 'services',
       admin: { description: 'Link to the related service (optional)' },
     },
-    {
-      type: 'row',
-      fields: [
-        {
-          name: 'isActive',
-          type: 'checkbox',
-          defaultValue: true,
-          admin: { width: '50%', description: '✅ Show in gallery' },
-        },
-        {
-          name: 'sortOrder',
-          type: 'number',
-          admin: { width: '50%', description: 'Display order (lower = first)', readOnly: true },
-        },
-      ],
-    },
+    { name: 'isActive', type: 'checkbox', defaultValue: true, label: 'Show on Website', admin: { position: 'sidebar', description: 'Uncheck to hide from gallery' } },
+    { name: 'sortOrder', type: 'number', admin: { position: 'sidebar', description: 'Display order (lower = first)' } },
   ],
 }
 

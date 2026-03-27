@@ -3,6 +3,7 @@ import type { GlobalConfig } from 'payload'
 const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Site Settings',
+  versions: false,
   admin: {
     description: 'Business name, contact info, hours & SEO defaults — these appear across the entire website',
   },

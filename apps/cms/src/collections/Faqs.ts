@@ -4,6 +4,7 @@ import { publicReadAdminWrite } from '@/access'
 const Faqs: CollectionConfig = {
   slug: 'faqs',
   labels: { singular: 'FAQ', plural: 'FAQs' },
+  versions: false,
   admin: {
     group: 'Content',
     useAsTitle: 'question',
@@ -25,7 +26,7 @@ const Faqs: CollectionConfig = {
       ],
       admin: { description: 'Group this FAQ under a topic' },
     },
-    { name: 'isActive', type: 'checkbox', defaultValue: true, admin: { position: 'sidebar', description: 'Show on website' } },
+    { name: 'isActive', type: 'checkbox', defaultValue: true, label: 'Show on Website', admin: { position: 'sidebar', description: 'Uncheck to hide from website' } },
     { name: 'sortOrder', type: 'number', admin: { position: 'sidebar', description: 'Display order (lower = first)' } },
   ],
 }

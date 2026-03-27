@@ -47,6 +47,7 @@ function iconField(name: string, defaultValue = 'Star', description = 'Pick an i
 const HeroSettings: GlobalConfig = {
   slug: 'hero-settings',
   label: 'Hero Section',
+  versions: false,
   access: { read: () => true },
   admin: { group: 'Layout' },
   fields: [

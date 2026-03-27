@@ -8,6 +8,7 @@ import { regenerateSitemap } from '@/hooks/regenerateSitemap'
 const Services: CollectionConfig = {
   slug: 'services',
   labels: { singular: 'Service', plural: 'Services' },
+  versions: false,
   admin: {
     group: 'Content',
     useAsTitle: 'title',
@@ -80,7 +81,7 @@ const Services: CollectionConfig = {
       ],
     },
     // ── Sidebar ──
-    { name: 'isActive', type: 'checkbox', defaultValue: true, admin: { position: 'sidebar', description: 'Show on website' } },
+    { name: 'isActive', type: 'checkbox', defaultValue: true, label: 'Show on Website', admin: { position: 'sidebar', description: 'Uncheck to hide this service from the website' } },
     { name: 'sortOrder', type: 'number', admin: { position: 'sidebar', description: 'Display order (lower = first)' } },
   ],
 }

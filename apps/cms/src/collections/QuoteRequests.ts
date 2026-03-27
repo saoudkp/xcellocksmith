@@ -6,6 +6,7 @@ import { sendQuoteNotification } from '@/hooks/sendQuoteNotification'
 const QuoteRequests: CollectionConfig = {
   slug: 'quote-requests',
   labels: { singular: 'Quote Request', plural: 'Quote Requests' },
+  versions: false,
   admin: {
     group: 'Leads',
     useAsTitle: 'name',

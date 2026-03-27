@@ -3,6 +3,7 @@ import { publicReadAdminWrite } from '@/access'
 
 const VehicleModels: CollectionConfig = {
   slug: 'vehicle-models',
+  versions: false,
   admin: {
     group: 'Vehicles',
     hidden: true, // Legacy collection — models are now inline in Vehicle Makes

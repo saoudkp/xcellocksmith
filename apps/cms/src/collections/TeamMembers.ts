@@ -3,8 +3,11 @@ import { publicReadAdminWrite } from '@/access'
 
 const TeamMembers: CollectionConfig = {
   slug: 'team-members',
+  versions: false,
   admin: {
     group: 'Content',
+    useAsTitle: 'name',
+    defaultColumns: ['name', 'role', 'isActive', 'sortOrder'],
   },
   access: publicReadAdminWrite,
   fields: [
@@ -33,8 +36,8 @@ const TeamMembers: CollectionConfig = {
         },
       ],
     },
-    { name: 'isActive', type: 'checkbox', defaultValue: true },
-    { name: 'sortOrder', type: 'number' },
+    { name: 'isActive', type: 'checkbox', defaultValue: true, label: 'Show on Website', admin: { position: 'sidebar', description: 'Uncheck to hide from website' } },
+    { name: 'sortOrder', type: 'number', admin: { position: 'sidebar', description: 'Display order (lower = first)' } },
   ],
 }
 

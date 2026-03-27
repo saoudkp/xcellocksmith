@@ -65,6 +65,7 @@ function sectionFields(
 const PageSectionSettings: GlobalConfig = {
   slug: 'sections-settings',
   label: 'Page Section Settings',
+  versions: false,
   access: { read: () => true, update: () => true },
   hooks: {
     afterChange: [invalidateSectionsCache, invalidateServicesCache],

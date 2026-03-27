@@ -3,6 +3,7 @@ import { publicReadAdminWrite } from '@/access'
 
 const VehicleMakes: CollectionConfig = {
   slug: 'vehicle-makes',
+  versions: false,
   admin: {
     group: 'Vehicles',
     useAsTitle: 'name',
@@ -86,6 +87,7 @@ const VehicleMakes: CollectionConfig = {
       name: 'isActive',
       type: 'checkbox',
       defaultValue: true,
+      label: 'Show on Website',
       admin: {
         description: 'Uncheck to hide this brand from the website',
         position: 'sidebar',

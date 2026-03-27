@@ -6,8 +6,11 @@ import { regenerateSitemap } from '@/hooks/regenerateSitemap'
 
 const ServiceAreas: CollectionConfig = {
   slug: 'service-areas',
+  versions: false,
   admin: {
     group: 'Content',
+    useAsTitle: 'cityName',
+    defaultColumns: ['cityName', 'state', 'isActive', 'sortOrder'],
   },
   access: publicReadAdminWrite,
   hooks: {
@@ -33,8 +36,8 @@ const ServiceAreas: CollectionConfig = {
         },
       },
     },
-    { name: 'isActive', type: 'checkbox', defaultValue: true },
-    { name: 'sortOrder', type: 'number' },
+    { name: 'isActive', type: 'checkbox', defaultValue: true, label: 'Show on Website', admin: { position: 'sidebar', description: 'Uncheck to hide from website' } },
+    { name: 'sortOrder', type: 'number', admin: { position: 'sidebar', description: 'Display order (lower = first)' } },
   ],
 }
 

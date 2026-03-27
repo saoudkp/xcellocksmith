@@ -54,7 +54,7 @@ export async function fetchServiceCategories() {
 }
 
 export async function fetchReviews() {
-  return fetchCms<PayloadListResponse<Record<string, unknown>>>('/api/reviews?limit=50&depth=0&where[isApproved][equals]=true&sort=-reviewDate');
+  return fetchCms<PayloadListResponse<Record<string, unknown>>>('/api/reviews?limit=50&depth=0&where[isApproved][equals]=true&where[isActive][equals]=true&sort=-reviewDate');
 }
 
 export async function fetchFaqs() {

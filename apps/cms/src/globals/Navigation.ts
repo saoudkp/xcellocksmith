@@ -3,6 +3,7 @@ import type { GlobalConfig } from 'payload'
 const Navigation: GlobalConfig = {
   slug: 'navigation',
   label: 'Navigation',
+  versions: false,
   admin: {
     description: 'Menu links shown in the website header — drag to reorder, toggle to show/hide',
   },

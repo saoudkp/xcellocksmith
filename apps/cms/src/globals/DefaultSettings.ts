@@ -11,6 +11,7 @@ import type { GlobalConfig } from 'payload'
 const DefaultSettings: GlobalConfig = {
   slug: 'default-settings',
   label: 'Default Settings',
+  versions: false,
   access: { read: () => true, update: () => true },
   fields: [
     {

@@ -4,6 +4,7 @@ import { isAuthenticated } from '@/access'
 const WhatsAppSettings: GlobalConfig = {
   slug: 'whatsapp-settings',
   label: 'WhatsApp Notifications',
+  versions: false,
   admin: {
     group: 'Leads',
     description: 'Configure WAHA (self-hosted WhatsApp) to receive instant notifications when a new quote request comes in.',

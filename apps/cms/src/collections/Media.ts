@@ -4,6 +4,7 @@ import { publicReadAdminWrite } from '@/access'
 const Media: CollectionConfig = {
   slug: 'media',
   labels: { singular: 'Media File', plural: 'Media Library' },
+  versions: false,
   admin: {
     group: 'Media',
     description: 'Upload and manage images, logos, certificates & documents',

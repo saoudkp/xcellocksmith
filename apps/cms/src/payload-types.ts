@@ -288,7 +288,7 @@ export interface ServiceCategory {
    */
   seoDescription?: string | null;
   /**
-   * Show on website
+   * Uncheck to hide this category from the website
    */
   isActive?: boolean | null;
   /**
@@ -373,7 +373,7 @@ export interface Service {
    */
   seoDescription?: string | null;
   /**
-   * Show on website
+   * Uncheck to hide this service from the website
    */
   isActive?: boolean | null;
   /**
@@ -398,7 +398,13 @@ export interface ServiceArea {
   responseTime?: string | null;
   seoTitle?: string | null;
   seoDescription?: string | null;
+  /**
+   * Uncheck to hide from website
+   */
   isActive?: boolean | null;
+  /**
+   * Display order (lower = first)
+   */
   sortOrder?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -430,7 +436,13 @@ export interface TeamMember {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Uncheck to hide from website
+   */
   isActive?: boolean | null;
+  /**
+   * Display order (lower = first)
+   */
   sortOrder?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -446,8 +458,14 @@ export interface Review {
   reviewText: string;
   reviewDate?: string | null;
   source?: ('website' | 'google' | 'yelp' | 'manual') | null;
+  /**
+   * Approve this review
+   */
   isApproved?: boolean | null;
-  isFeatured?: boolean | null;
+  /**
+   * Uncheck to hide from website
+   */
+  isActive?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -486,7 +504,7 @@ export interface Faq {
    */
   category?: ('general' | 'pricing' | 'services' | 'emergency') | null;
   /**
-   * Show on website
+   * Uncheck to hide from website
    */
   isActive?: boolean | null;
   /**
@@ -533,7 +551,7 @@ export interface GalleryItem {
    */
   service?: (number | null) | Service;
   /**
-   * ✅ Show in gallery
+   * Uncheck to hide from gallery
    */
   isActive?: boolean | null;
   /**
@@ -981,7 +999,7 @@ export interface ReviewsSelect<T extends boolean = true> {
   reviewDate?: T;
   source?: T;
   isApproved?: T;
-  isFeatured?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }

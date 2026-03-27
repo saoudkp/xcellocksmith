@@ -6,6 +6,7 @@ import { regenerateSitemap } from '@/hooks/regenerateSitemap'
 const ServiceCategories: CollectionConfig = {
   slug: 'service-categories',
   labels: { singular: 'Service Category', plural: 'Service Categories' },
+  versions: false,
   admin: {
     group: 'Content',
     useAsTitle: 'name',
@@ -44,7 +45,7 @@ const ServiceCategories: CollectionConfig = {
         { name: 'seoDescription', type: 'textarea', admin: { description: 'Meta description for search results' } },
       ],
     },
-    { name: 'isActive', type: 'checkbox', defaultValue: true, admin: { position: 'sidebar', description: 'Show on website' } },
+    { name: 'isActive', type: 'checkbox', defaultValue: true, label: 'Show on Website', admin: { position: 'sidebar', description: 'Uncheck to hide this category from the website' } },
     { name: 'sortOrder', type: 'number', admin: { position: 'sidebar', description: 'Display order (lower = first)' } },
   ],
 }

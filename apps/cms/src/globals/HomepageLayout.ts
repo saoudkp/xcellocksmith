@@ -3,6 +3,7 @@ import type { GlobalConfig } from 'payload'
 const HomepageLayout: GlobalConfig = {
   slug: 'homepage-layout',
   label: 'Homepage Layout',
+  versions: false,
   admin: {
     description: 'Drag and reorder the sections on your homepage. Toggle sections on/off, edit headings & subheadings.',
   },

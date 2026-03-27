@@ -18,12 +18,12 @@ export const publicReadAdminWrite = {
 }
 
 /**
- * Reviews access: public read (approved only for unauthenticated),
+ * Reviews access: public read (approved + active for unauthenticated),
  * public create, admin manage.
  */
 export const reviewsAccess = {
   read: (({ req }) =>
-    req.user ? true : { isApproved: { equals: true } }) as Access,
+    req.user ? true : { and: [{ isApproved: { equals: true } }, { isActive: { equals: true } }] }) as Access,
   create: (() => true) as Access,
   update: isAuthenticated,
   delete: isAuthenticated,
