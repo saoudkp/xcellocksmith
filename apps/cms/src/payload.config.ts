@@ -107,12 +107,14 @@ export default buildConfig({
     'http://localhost:5173',
     'http://localhost:8080',
     process.env.NEXT_PUBLIC_SITE_URL || '',
+    process.env.NEXT_PUBLIC_SITE_URL ? `https://www.${new URL(process.env.NEXT_PUBLIC_SITE_URL).hostname}` : '',
   ].filter(Boolean),
   csrf: [
     'http://localhost:3000',
     'http://localhost:5173',
     'http://localhost:8080',
     process.env.NEXT_PUBLIC_SITE_URL || '',
+    process.env.NEXT_PUBLIC_SITE_URL ? `https://www.${new URL(process.env.NEXT_PUBLIC_SITE_URL).hostname}` : '',
   ].filter(Boolean),
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
