@@ -43,10 +43,15 @@ const Index = () => {
 
   if (!cmsReady) {
     return (
-      <div className="min-h-screen bg-gradient-page flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-accent/30 border-t-accent rounded-full animate-spin" />
-          <p className="text-muted-foreground text-sm font-medium animate-pulse">Loading...</p>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="flex flex-col items-center gap-6">
+          {/* Pulsing red ring */}
+          <div className="relative w-16 h-16">
+            <div className="absolute inset-0 rounded-full border-4 border-red-500/20" />
+            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-red-500 animate-spin" />
+            <div className="absolute inset-2 rounded-full border-2 border-transparent border-b-red-400 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }} />
+            <div className="absolute inset-0 rounded-full animate-ping bg-red-500/10" />
+          </div>
         </div>
       </div>
     );
