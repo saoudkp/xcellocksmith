@@ -2,7 +2,7 @@ import type { CollectionAfterChangeHook } from 'payload'
 import { sendEmail } from '@/email/send'
 import { quoteRequestBusinessTemplate } from '@/email/templates/quote-request-business'
 import { quoteRequestCustomerTemplate } from '@/email/templates/quote-request-customer'
-import { sendWhatsApp } from '@/utils/sendWhatsApp'
+import { sendWhatsApp, sendWhatsAppImage, sendWhatsAppLocation } from '@/utils/sendWhatsApp'
 
 const BUSINESS_EMAIL = process.env.BUSINESS_EMAIL || 'admin@xcel-locksmith.com'
 const BUSINESS_PHONE = process.env.BUSINESS_PHONE || '(216) 555-1234'
@@ -55,15 +55,41 @@ export const sendQuoteNotification: CollectionAfterChangeHook = async ({ doc, op
       doc.email ? `📧 ${doc.email}` : null,
       doc.serviceType ? `🔧 ${doc.serviceType.charAt(0).toUpperCase() + doc.serviceType.slice(1)}` : null,
       doc.location ? `📍 ${doc.location}` : null,
+      doc.lat && doc.lng ? `🗺️ https://maps.google.com/maps?q=${doc.lat},${doc.lng}` : null,
       doc.body ? `💬 ${doc.body}` : null,
     ].filter(Boolean).join('\n')
 
     await sendWhatsApp(waLines).catch((err: unknown) => {
-      console.error('[sendQuoteNotification] WhatsApp notification failed:', {
+      console.error('[sendQuoteNotification] WhatsApp text failed:', {
         quoteRequestId: doc.id,
         error: err instanceof Error ? err.message : String(err),
       })
     })
+
+    // Send location pin if coordinates available
+    if (doc.lat && doc.lng) {
+      await sendWhatsAppLocation(doc.lat, doc.lng, doc.location || doc.name).catch((err: unknown) => {
+        console.error('[sendQuoteNotification] WhatsApp location failed:', {
+          quoteRequestId: doc.id,
+          error: err instanceof Error ? err.message : String(err),
+        })
+      })
+    }
+
+    // Send photo if attached
+    if (doc.photo) {
+      const photoUrl = typeof doc.photo === 'object' ? doc.photo.url : null
+      if (photoUrl) {
+        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cms.xcellocksmith.com'
+        const fullUrl = photoUrl.startsWith('http') ? photoUrl : `${siteUrl}${photoUrl}`
+        await sendWhatsAppImage(fullUrl, `📷 Photo from ${doc.name}`).catch((err: unknown) => {
+          console.error('[sendQuoteNotification] WhatsApp image failed:', {
+            quoteRequestId: doc.id,
+            error: err instanceof Error ? err.message : String(err),
+          })
+        })
+      }
+    }
   } catch (error) {
     console.error('[sendQuoteNotification] Failed to send notification emails:', {
       quoteRequestId: doc.id,
