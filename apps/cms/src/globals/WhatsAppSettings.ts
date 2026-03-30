@@ -71,6 +71,15 @@ const WhatsAppSettings: GlobalConfig = {
             placeholder: '12165551234',
           },
         },
+        {
+          name: 'groupId',
+          type: 'text',
+          label: 'WhatsApp Group ID (optional)',
+          admin: {
+            description: 'Send notifications to a group instead of direct message. Format: 120363XXXXXXXXX@g.us',
+            placeholder: '120363405575265439@g.us',
+          },
+        },
       ],
     },
     {

@@ -44,12 +44,23 @@ export async function sendWhatsApp(message: string): Promise<void> {
   const headers: Record<string, string> = { 'Content-Type': 'application/json' }
   if (apiKey) headers['X-Api-Key'] = apiKey
 
+  // Use group ID if configured, otherwise send to business phone directly
+  let groupId: string | undefined
+  try {
+    const payload = await getPayload({ config })
+    const settings = await payload.findGlobal({ slug: 'whatsapp-settings' as any }) as any
+    groupId = settings?.groupId || undefined
+  } catch { /* ignore */ }
+  groupId = groupId || process.env.WAHA_GROUP_ID
+
+  const chatId = groupId || `${businessPhone}@c.us`
+
   const res = await fetch(`${wahaUrl}/api/sendText`, {
     method: 'POST',
     headers,
     body: JSON.stringify({
       session,
-      chatId: `${businessPhone}@c.us`,
+      chatId,
       text: message,
     }),
   })
