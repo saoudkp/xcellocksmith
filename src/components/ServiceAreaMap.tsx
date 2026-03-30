@@ -16,8 +16,13 @@ const ServiceAreaMap = () => {
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
 
+    let cancelled = false;
+
     const initMap = async () => {
       const L = (await import("leaflet")).default;
+
+      // If the effect was cleaned up while we were awaiting the import, bail out
+      if (cancelled || mapInstance.current) return;
 
       delete (L.Icon.Default.prototype as any)._getIconUrl;
 
@@ -102,6 +107,7 @@ const ServiceAreaMap = () => {
     initMap();
 
     return () => {
+      cancelled = true;
       if (mapInstance.current) {
         mapInstance.current.remove();
         mapInstance.current = null;
