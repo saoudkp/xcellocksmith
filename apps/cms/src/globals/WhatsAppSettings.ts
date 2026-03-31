@@ -82,16 +82,6 @@ const WhatsAppSettings: GlobalConfig = {
         },
       ],
     },
-    {
-      type: 'ui',
-      name: 'setupGuide',
-      label: 'Setup Guide',
-      admin: {
-        components: {
-          Field: '/components/WhatsAppSetupGuide',
-        },
-      },
-    },
   ],
 }
 
