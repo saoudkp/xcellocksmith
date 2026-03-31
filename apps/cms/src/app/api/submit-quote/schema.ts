@@ -10,5 +10,6 @@ export const quoteSchema = z.object({
   body: z.string().optional(),
   lat: z.number().optional(),
   lng: z.number().optional(),
+  photo: z.union([z.string(), z.number()]).optional(),
   honeypot: z.string().optional(),
 })
