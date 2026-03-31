@@ -76,20 +76,6 @@ export const sendQuoteNotification: CollectionAfterChangeHook = async ({ doc, op
       })
     }
 
-    // Send photo if attached
-    if (doc.photo) {
-      const photoUrl = typeof doc.photo === 'object' ? doc.photo.url : null
-      if (photoUrl) {
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cms.xcellocksmith.com'
-        const fullUrl = photoUrl.startsWith('http') ? photoUrl : `${siteUrl}${photoUrl}`
-        await sendWhatsAppImage(fullUrl, `📷 Photo from ${doc.name}`).catch((err: unknown) => {
-          console.error('[sendQuoteNotification] WhatsApp image failed:', {
-            quoteRequestId: doc.id,
-            error: err instanceof Error ? err.message : String(err),
-          })
-        })
-      }
-    }
   } catch (error) {
     console.error('[sendQuoteNotification] Failed to send notification emails:', {
       quoteRequestId: doc.id,
