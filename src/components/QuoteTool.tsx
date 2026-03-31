@@ -65,20 +65,19 @@ const QuoteTool = () => {
     if (!phone.trim()) { toast({ title: "Phone required", variant: "destructive" }); return; }
     setSubmitting(true);
     try {
-      let photoId: string | undefined;
+      let photoBase64: string | undefined;
       if (photo) {
-        const formData = new FormData();
-        formData.append("file", photo);
-        formData.append("alt", `Quote photo from ${name.trim()}`);
-        formData.append("mediaCategory", "quotes");
-        const uploadRes = await fetch(CMS_URL + "/api/media", { method: "POST", body: formData });
-        if (uploadRes.ok) { const uploadData = await uploadRes.json(); photoId = uploadData.doc?.id; }
+        const reader = new FileReader();
+        photoBase64 = await new Promise<string>((resolve) => {
+          reader.onload = () => resolve(reader.result as string);
+          reader.readAsDataURL(photo);
+        });
       }
       const payload: Record<string, unknown> = { name: name.trim(), phone: phone.trim(), serviceType: serviceType || undefined, location: location.trim() || undefined, body: body.trim() || undefined, honeypot };
       if (email.trim()) payload.email = email.trim();
       if (lat !== null) payload.lat = lat;
       if (lng !== null) payload.lng = lng;
-      if (photoId) payload.photo = photoId;
+      if (photoBase64) payload.photoBase64 = photoBase64;
       const res = await fetch(CMS_URL + "/api/submit-quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       if (!res.ok) throw new Error("Failed");
       setSubmitted(true);

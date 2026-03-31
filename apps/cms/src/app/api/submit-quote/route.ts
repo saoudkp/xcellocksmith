@@ -49,9 +49,29 @@ export async function POST(request: Request) {
 
     const payload = await getPayload({ config })
 
+    // Upload photo if base64 provided
+    let photoId: number | undefined
+    if (data.photoBase64) {
+      try {
+        const matches = data.photoBase64.match(/^data:(.+);base64,(.+)$/)
+        if (matches) {
+          const mimeType = matches[1]
+          const ext = mimeType.split('/')[1] || 'jpg'
+          const buffer = Buffer.from(matches[2], 'base64')
+          const mediaDoc = await payload.create({
+            collection: 'media',
+            data: { alt: `Quote photo from ${data.name}`, mediaCategory: 'quotes' },
+            file: { data: buffer, mimetype: mimeType, name: `quote-photo-${Date.now()}.${ext}`, size: buffer.length },
+          })
+          photoId = mediaDoc.id as number
+        }
+      } catch (e) { console.error('[submit-quote] Photo upload failed:', e) }
+    }
+
+    const { photoBase64: _photo, ...quoteData } = data
     const doc = await payload.create({
       collection: 'quote-requests',
-      data: data as any,
+      data: { ...quoteData, ...(photoId ? { photo: photoId } : {}) } as any,
     })
 
     return NextResponse.json({ success: true, id: doc.id }, { status: 201, headers })
