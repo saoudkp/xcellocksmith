@@ -28,7 +28,7 @@ const Media: CollectionConfig = {
     beforeOperation: [
       ({ operation, req }) => {
         if ((operation === 'create' || operation === 'update') && req.file) {
-          const MAX_SIZE = 2 * 1024 * 1024 // 2MB
+          const MAX_SIZE = 10 * 1024 * 1024 // 10MB
           if (req.file.size > MAX_SIZE) {
             throw new Error(
               `File too large: ${(req.file.size / 1024 / 1024).toFixed(2)}MB. Maximum allowed size is 2MB.`,

@@ -59,7 +59,8 @@ export const sendQuoteNotification: CollectionAfterChangeHook = async ({ doc, op
       doc.body ? `💬 ${doc.body}` : null,
     ].filter(Boolean).join('\n')
 
-    await sendWhatsApp(waLines.filter(Boolean).join('\n')).catch((err: unknown) => {
+    const waText = (Array.isArray(waLines) ? waLines : []).filter(Boolean).join('\n')
+    await sendWhatsApp(waText).catch((err: unknown) => {
       console.error('[sendQuoteNotification] WhatsApp text failed:', {
         quoteRequestId: doc.id,
         error: err instanceof Error ? err.message : String(err),
