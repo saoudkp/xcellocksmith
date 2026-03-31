@@ -2,7 +2,7 @@ import type { CollectionAfterChangeHook } from 'payload'
 import { sendEmail } from '@/email/send'
 import { quoteRequestBusinessTemplate } from '@/email/templates/quote-request-business'
 import { quoteRequestCustomerTemplate } from '@/email/templates/quote-request-customer'
-import { sendWhatsApp, sendWhatsAppImage, sendWhatsAppLocation } from '@/utils/sendWhatsApp'
+import { sendWhatsApp, sendWhatsAppLocation } from '@/utils/sendWhatsApp'
 
 const BUSINESS_EMAIL = process.env.BUSINESS_EMAIL || 'admin@xcel-locksmith.com'
 const BUSINESS_PHONE = process.env.BUSINESS_PHONE || '(216) 555-1234'
@@ -59,7 +59,7 @@ export const sendQuoteNotification: CollectionAfterChangeHook = async ({ doc, op
       doc.body ? `💬 ${doc.body}` : null,
     ].filter(Boolean).join('\n')
 
-    await sendWhatsApp(waLines).catch((err: unknown) => {
+    await sendWhatsApp(waMessage).catch((err: unknown) => {
       console.error('[sendQuoteNotification] WhatsApp text failed:', {
         quoteRequestId: doc.id,
         error: err instanceof Error ? err.message : String(err),
