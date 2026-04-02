@@ -15,6 +15,16 @@ const WhatsAppSettings: GlobalConfig = {
   },
   fields: [
     {
+      type: 'ui',
+      name: 'connectionPanel',
+      label: ' ',
+      admin: {
+        components: {
+          Field: '/components/WhatsAppConnectionPanel',
+        },
+      },
+    },
+    {
       name: 'enabled',
       type: 'checkbox',
       label: 'Enable WhatsApp notifications',
@@ -26,14 +36,14 @@ const WhatsAppSettings: GlobalConfig = {
     {
       type: 'collapsible',
       label: 'WAHA Connection',
-      admin: { initCollapsed: false },
+      admin: { initCollapsed: true },
       fields: [
         {
           name: 'wahaUrl',
           type: 'text',
           label: 'WAHA URL',
           admin: {
-            description: 'Base URL of your WAHA Docker container, e.g. http://155.133.26.35:3001',
+            description: 'Base URL of your WAHA Docker container',
             placeholder: 'http://155.133.26.35:3001',
           },
         },
@@ -42,18 +52,13 @@ const WhatsAppSettings: GlobalConfig = {
           type: 'text',
           label: 'Session name',
           defaultValue: 'default',
-          admin: {
-            description: 'WAHA session name — leave as "default".',
-            placeholder: 'default',
-          },
+          admin: { description: 'Leave as "default".', placeholder: 'default' },
         },
         {
           name: 'wahaApiKey',
           type: 'text',
           label: 'API key',
-          admin: {
-            description: 'WAHA API key for authentication.',
-          },
+          admin: { description: 'WAHA API key for authentication.' },
         },
       ],
     },
@@ -67,7 +72,7 @@ const WhatsAppSettings: GlobalConfig = {
           type: 'text',
           label: 'Business WhatsApp number',
           admin: {
-            description: 'International format, digits only — no +, spaces or dashes. e.g. 12165551234',
+            description: 'International format, digits only. e.g. 12165551234',
             placeholder: '12165551234',
           },
         },
@@ -76,21 +81,11 @@ const WhatsAppSettings: GlobalConfig = {
           type: 'text',
           label: 'WhatsApp Group ID',
           admin: {
-            description: 'Send notifications to a group. Use the "Load Groups" button below to find the ID.',
+            description: 'Use "Load Groups" in the connection panel above to find the ID.',
             placeholder: '120363405575265439@g.us',
           },
         },
       ],
-    },
-    {
-      type: 'ui',
-      name: 'connectionPanel',
-      label: 'WhatsApp Connection Manager',
-      admin: {
-        components: {
-          Field: '/components/WhatsAppConnectionPanel',
-        },
-      },
     },
   ],
 }
