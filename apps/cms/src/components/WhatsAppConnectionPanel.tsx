@@ -207,7 +207,17 @@ export const WhatsAppConnectionPanel: React.FC = () => {
           <p style={{ fontSize: "0.8rem", color: "#aaa", marginBottom: "0.5rem" }}>Click a group to copy its ID:</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
             {groups.map(g => (
-              <button key={g.id} onClick={() => { navigator.clipboard.writeText(g.id); alert("Copied: " + g.id) }}
+              <button key={g.id} onClick={async () => {
+                  navigator.clipboard.writeText(g.id)
+                  try {
+                    await fetch("/api/waha?action=update-settings", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ groupId: g.id }),
+                    })
+                    alert("Group saved: " + (g.name || g.id) + "\n\nNotifications will now go to this group.")
+                  } catch { alert("Copied: " + g.id + "\n\nPaste in Group ID field manually.") }
+                }}
                 style={{ padding: "0.5rem 0.75rem", borderRadius: "6px", background: "#222", border: "1px solid #444", color: "#ddd", cursor: "pointer", fontSize: "0.8rem", textAlign: "left" }}>
                 {g.name || g.id}
               </button>
