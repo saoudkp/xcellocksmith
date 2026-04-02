@@ -47,7 +47,7 @@ export const sendQuoteNotification: CollectionAfterChangeHook = async ({ doc, op
     if (doc.photo) {
       const photoUrl = typeof doc.photo === 'object' ? (doc.photo as Record<string, unknown>).url as string : null
       if (photoUrl) {
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cms.xcellocksmith.com'
+        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ? `https://cms.${new URL(process.env.NEXT_PUBLIC_SITE_URL).hostname}` : 'https://cms.xcellocksmith.com'
         const fullUrl = photoUrl.startsWith('http') ? photoUrl : `${siteUrl}${photoUrl}`
         lines.push(`\ud83d\udcf7 Photo: ${fullUrl}`)
       }
