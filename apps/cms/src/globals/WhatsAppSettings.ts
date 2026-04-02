@@ -33,8 +33,8 @@ const WhatsAppSettings: GlobalConfig = {
           type: 'text',
           label: 'WAHA URL',
           admin: {
-            description: 'Base URL of your WAHA Docker container, e.g. http://localhost:3002',
-            placeholder: 'http://localhost:3002',
+            description: 'Base URL of your WAHA Docker container, e.g. http://155.133.26.35:3001',
+            placeholder: 'http://155.133.26.35:3001',
           },
         },
         {
@@ -43,16 +43,16 @@ const WhatsAppSettings: GlobalConfig = {
           label: 'Session name',
           defaultValue: 'default',
           admin: {
-            description: 'WAHA session name — leave as "default" unless you created a custom one.',
+            description: 'WAHA session name — leave as "default".',
             placeholder: 'default',
           },
         },
         {
           name: 'wahaApiKey',
           type: 'text',
-          label: 'API key (optional)',
+          label: 'API key',
           admin: {
-            description: 'Only required if you secured WAHA with an API key.',
+            description: 'WAHA API key for authentication.',
           },
         },
       ],
@@ -74,13 +74,23 @@ const WhatsAppSettings: GlobalConfig = {
         {
           name: 'groupId',
           type: 'text',
-          label: 'WhatsApp Group ID (optional)',
+          label: 'WhatsApp Group ID',
           admin: {
-            description: 'Send notifications to a group instead of direct message. Format: 120363XXXXXXXXX@g.us',
+            description: 'Send notifications to a group. Use the "Load Groups" button below to find the ID.',
             placeholder: '120363405575265439@g.us',
           },
         },
       ],
+    },
+    {
+      type: 'ui',
+      name: 'connectionPanel',
+      label: 'WhatsApp Connection Manager',
+      admin: {
+        components: {
+          Field: '/components/WhatsAppConnectionPanel',
+        },
+      },
     },
   ],
 }
