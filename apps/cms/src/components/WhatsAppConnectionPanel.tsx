@@ -86,14 +86,20 @@ export const WhatsAppConnectionPanel: React.FC = () => {
 
   const updateAndSave = async () => {
     setSaveMsg(null)
-    const parts: string[] = []
-    if (phone) parts.push("Phone: " + phone)
-    if (selectedGroup) parts.push("Group: " + selectedGroup)
-    if (!parts.length) { setSaveMsg("Nothing to update"); return }
-    // Copy to clipboard and instruct user
-    const text = [phone || "", selectedGroup || ""].filter(Boolean).join("\n")
-    navigator.clipboard.writeText(text).catch(() => {})
-    setSaveMsg("Values copied! Paste the phone number (" + (phone || "none") + ") and group ID (" + (selectedGroup || "none") + ") into the Recipient fields below, then click Save at the top of the page.")
+    const updateData: Record<string, unknown> = {}
+    if (phone) updateData.businessPhone = phone
+    if (selectedGroup) updateData.groupId = selectedGroup
+    if (!updateData.businessPhone && !updateData.groupId) { setSaveMsg("Nothing to update"); return }
+    try {
+      const res = await fetch("/api/globals/whatsapp-settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(updateData),
+      })
+      if (res.ok) { setSaveMsg("Saved! Reloading..."); setTimeout(() => window.location.reload(), 1000) }
+      else { const err = await res.text(); setSaveMsg("Failed: " + res.status + " " + err.slice(0, 100)) }
+    } catch (e: any) { setSaveMsg("Error: " + e.message) }
   }
 
   const sc = connected ? "#25d366" : showingQr ? "#f59e0b" : "#ef4444"
@@ -132,7 +138,7 @@ export const WhatsAppConnectionPanel: React.FC = () => {
           <>
             <button onClick={disconnect} disabled={loading} style={{ padding: "0.5rem 1rem", borderRadius: "6px", background: "#ef4444", color: "#fff", border: "none", cursor: "pointer", fontSize: "0.85rem", fontWeight: 600, opacity: loading ? 0.6 : 1 }}>Disconnect</button>
             <button onClick={loadGroups} style={{ padding: "0.5rem 1rem", borderRadius: "6px", background: "#333", color: "#fff", border: "1px solid #555", cursor: "pointer", fontSize: "0.85rem" }}>Load Groups</button>
-            <button onClick={updateAndSave} style={{ padding: "0.5rem 1rem", borderRadius: "6px", background: "#3b82f6", color: "#fff", border: "none", cursor: "pointer", fontSize: "0.85rem", fontWeight: 600 }}>Copy Values</button>
+            <button onClick={updateAndSave} style={{ padding: "0.5rem 1rem", borderRadius: "6px", background: "#3b82f6", color: "#fff", border: "none", cursor: "pointer", fontSize: "0.85rem", fontWeight: 600 }}>Update &amp; Save</button>
           </>
         )}
       </div>
