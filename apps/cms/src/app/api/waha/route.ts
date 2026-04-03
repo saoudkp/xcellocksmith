@@ -69,17 +69,6 @@ export async function GET(request: Request) {
       return NextResponse.json(groups.map((g: any) => ({ id: g.id, name: g.name || g.id })))
     }
 
-    if (action === 'update-settings') {
-      const body = await request.json()
-      const payload = await getPayload({ config })
-      const updateData: Record<string, unknown> = {}
-      if (body.businessPhone) updateData.businessPhone = body.businessPhone
-      if (body.groupId) updateData.groupId = body.groupId
-      if (body.groupId === '') updateData.groupId = ''
-      await payload.updateGlobal({ slug: 'whatsapp-settings' as any, data: updateData as any })
-      return NextResponse.json({ ok: true })
-    }
-
     return NextResponse.json({ error: 'Unknown action' }, { status: 400 })
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 })
