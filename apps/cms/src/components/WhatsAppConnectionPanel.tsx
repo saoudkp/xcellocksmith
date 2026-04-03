@@ -86,15 +86,20 @@ export const WhatsAppConnectionPanel: React.FC = () => {
 
   const updateAndSave = async () => {
     setSaveMsg(null)
-    const body: Record<string, string> = {}
-    if (phone) body.businessPhone = phone
-    if (selectedGroup) body.groupId = selectedGroup
-    if (!body.businessPhone && !body.groupId) { setSaveMsg("Nothing to update"); return }
+    const updateData: Record<string, unknown> = {}
+    if (phone) updateData.businessPhone = phone
+    if (selectedGroup) updateData.groupId = selectedGroup
+    if (!updateData.businessPhone && !updateData.groupId) { setSaveMsg("Nothing to update"); return }
     try {
-      const res = await fetch("/api/waha?action=update-settings", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
-      if (res.ok) { setSaveMsg("Saved! Refresh the page to see updated values."); setTimeout(() => window.location.reload(), 1500) }
-      else { setSaveMsg("Failed to save") }
-    } catch { setSaveMsg("Error saving") }
+      const res = await fetch("/api/globals/whatsapp-settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(updateData),
+      })
+      if (res.ok) { setSaveMsg("Saved! Reloading..."); setTimeout(() => window.location.reload(), 1000) }
+      else { const err = await res.text(); setSaveMsg("Failed: " + res.status + " " + err.slice(0, 100)) }
+    } catch (e: any) { setSaveMsg("Error: " + e.message) }
   }
 
   const sc = connected ? "#25d366" : showingQr ? "#f59e0b" : "#ef4444"
